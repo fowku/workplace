@@ -12,7 +12,9 @@ class Workplace extends React.Component<WorkplaceProps, WorkplaceState> {
     state = {}
     render() { 
         return (
-            <h1>baby hi</h1>
+            <h2>
+                test 224
+            </h2>
         );
     }
 }
