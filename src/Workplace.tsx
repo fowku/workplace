@@ -12,7 +12,7 @@ class Workplace extends React.Component<WorkplaceProps, WorkplaceState> {
     state = {}
     render() { 
         return (
-            <h1>This is test commit 2!</h1>
+            <h1>This is dev branch</h1>
         );
     }
 }
