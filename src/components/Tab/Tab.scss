@@ -12,13 +12,14 @@ $disabled-shadow_hover: rgba(#000000, 0.2);
 .tab {
     height: 26px;
     border-radius: 14px;
-    width: 114px;
+    // width: 114px;
     display: flex;
     align-items: center;
     font-size: 13px;
     font-weight: 500;
     padding-bottom: 2px;
     padding-left: 33px;
+    padding-right: 13px;
     transition: box-shadow 0.2s ease-in-out;
     cursor: pointer;
 }
