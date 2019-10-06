@@ -1,4 +1,7 @@
 import * as React from 'react';
+import './Workplace.scss';
+
+import Taskbar from './Taskbar/Taskbar';
 
 export interface WorkplaceProps {
     
@@ -12,9 +15,9 @@ class Workplace extends React.Component<WorkplaceProps, WorkplaceState> {
     state = {}
     render() { 
         return (
-            <h2>
-                test
-            </h2>
+            <div className="workplace">
+                <Taskbar />
+            </div>
         );
     }
 }

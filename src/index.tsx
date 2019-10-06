@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Workplace from './Workplace';
+import Workplace from './components/Workplace';
+import './index.css';
 // import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<Workplace />, document.getElementById('root'));

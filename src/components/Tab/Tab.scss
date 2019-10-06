@@ -1,0 +1,48 @@
+$lable-color_enabled: rgba(#000000, 0.8);
+$lable-color_disabled: rgba(#000000, 0.59);
+
+$enabled: #4494DD;
+$enabled-shadow: rgba(#52A3EE, 0.6);
+$enabled-shadow_hover: rgba(#52A3EE, 0.7);
+
+$disabled: #E2E2E2;
+$disabled-shadow: rgba(#000000, 0.13);
+$disabled-shadow_hover: rgba(#000000, 0.2);
+
+.tab {
+    height: 26px;
+    border-radius: 14px;
+    width: 114px;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 500;
+    padding-bottom: 2px;
+    padding-left: 33px;
+    transition: box-shadow 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.tab_disabled {
+    color: $lable-color_disabled;
+    background: url(./messanger-icon_disabled.svg) no-repeat 12px 8px;
+    box-shadow: 0 0 0 1px $disabled,
+                0 0 5px $disabled-shadow;
+}
+
+.tab_disabled:hover {
+    box-shadow: 0 0 0 1px $disabled,
+                0 0 10px $disabled-shadow_hover;
+}
+
+.tab_enabled {
+    color: $lable-color_enabled;
+    background: url(./messanger-icon_enabled.svg) no-repeat 12px 8px;
+    box-shadow: 0 0 0 1px $enabled,
+                0 0 5px $enabled-shadow;
+}
+
+.tab_enabled:hover {
+    box-shadow: 0 0 0 1px $enabled,
+                0 0 10px $enabled-shadow_hover;
+}
