@@ -16,7 +16,21 @@ class Taskbar extends React.Component<TaskbarProps, TaskbarState> {
     render() { 
         return (
             <div className="taskbar">
-                <Tab name="messanger" active={true}/>
+                <div className="taskbar__tabs">
+                    <Tab name="messanger" active={true} />
+                    <Tab name="messanger" active={true} />
+                    <Tab name="messanger" active={true} />
+                    <Tab name="messanger" active={false} />
+                    <Tab name="messanger" active={false} />
+                    <Tab name="messanger" active={false} />
+                    <Tab name="messanger" active={false} />
+                    <Tab name="messanger" active={false} />
+                    <Tab name="messanger" active={false} />
+                    <Tab name="messanger" active={false} />
+                    <Tab name="messanger" active={false} />
+                    <Tab name="messanger" active={false} />
+                </div>
+                <div className="taskbar__end" />
                 <Clock />
             </div>
         );
