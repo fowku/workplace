@@ -2,6 +2,7 @@ import * as React from 'react';
 import './Workplace.scss';
 
 import Taskbar from './Taskbar/Taskbar';
+import Startbar from './Startbar/Startbar';
 
 export interface WorkplaceProps {
     
@@ -17,6 +18,7 @@ class Workplace extends React.Component<WorkplaceProps, WorkplaceState> {
         return (
             <div className="workplace">
                 <Taskbar />
+                <Startbar />
             </div>
         );
     }

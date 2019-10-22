@@ -71,3 +71,9 @@ $inactive-shadow_hover: rgba(#000000, 0.2);
     box-shadow: 0 0 0 1px $active,
                 0 0 10px $active-shadow_hover;
 }
+
+.tab:last-child::after {
+    width: 20px;
+    height: 10px;
+    background-color: red;
+}

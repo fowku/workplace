@@ -18,17 +18,17 @@ class Taskbar extends React.Component<TaskbarProps, TaskbarState> {
             <div className="taskbar">
                 <div className="taskbar__tabs">
                     <Tab name="messanger" active={true} />
+                    <Tab name="notes" active={true} />
                     <Tab name="messanger" active={true} />
-                    <Tab name="messanger" active={true} />
+                    <Tab name="player" active={false} />
+                    <Tab name="messanger" active={false} />
+                    {/* <Tab name="messanger" active={false} />
                     <Tab name="messanger" active={false} />
                     <Tab name="messanger" active={false} />
                     <Tab name="messanger" active={false} />
                     <Tab name="messanger" active={false} />
                     <Tab name="messanger" active={false} />
-                    <Tab name="messanger" active={false} />
-                    <Tab name="messanger" active={false} />
-                    <Tab name="messanger" active={false} />
-                    <Tab name="messanger" active={false} />
+                    <Tab name="messanger" active={false} /> */}
                 </div>
                 <div className="taskbar__end" />
                 <Clock />

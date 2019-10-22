@@ -1,5 +1,8 @@
 .workplace {
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     background: url(../assets/wallpaper.jpg) no-repeat center;
     background-size: 100%;
     height: 100%;
