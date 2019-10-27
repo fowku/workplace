@@ -9,14 +9,6 @@ export interface WindowState {
     isDragging: Boolean,
     x: Number,
     y: Number
-    // originalX: Number,
-    // originalY: Number,
-
-    // translateX: Number,
-    // translateY: Number,
-
-    // lastTranslateX: Number,
-    // lastTranslateY: Number
 }
 
 class Window extends React.Component<WindowProps, WindowState> {
@@ -31,7 +23,12 @@ class Window extends React.Component<WindowProps, WindowState> {
         window.removeEventListener('mouseup', this.handleMouseUp);
     }
 
-    handleMouseDown = (event: any) => {
+    /**
+     * Handles mousedown event
+     * 
+     * @param event - synthetic event
+     */
+    handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
         console.log('down', event);
         window.addEventListener('mousemove', this.handleMouseMove);
         window.addEventListener('mouseup', this.handleMouseUp);
@@ -39,24 +36,43 @@ class Window extends React.Component<WindowProps, WindowState> {
         this.setState({
             isDragging: true
         });
+
+        event.stopPropagation();
+        event.preventDefault();
     };
 
-    handleMouseMove = (event: any) => {
+    /**
+     * Handles mousemove event
+     * 
+     * @param event - synthetic event
+     */
+    handleMouseMove = (event: MouseEvent) => {
         console.log('move', event);
 
         this.setState({
             x: event.clientX,
             y: event.clientY
-        })
+        });
+
+        event.stopPropagation();
+        event.preventDefault();
     }
 
-    handleMouseUp = (event: any) => {
+    /**
+     * Handles mouseup event
+     * 
+     * @param event - synthetic event
+     */
+    handleMouseUp = (event: MouseEvent) => {
         window.removeEventListener('mousemove', this.handleMouseMove);
         window.removeEventListener('mouseup', this.handleMouseUp);
 
         this.setState({
             isDragging: false
-        })
+        });
+
+        event.stopPropagation();
+        event.preventDefault();
     }
 
     render() {
