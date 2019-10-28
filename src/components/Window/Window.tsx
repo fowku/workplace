@@ -2,20 +2,21 @@ import * as React from 'react';
 import './Window.scss';
 
 export interface WindowProps {
-
+    isOpened: Boolean,
+    windowName: String
 }
 
 export interface WindowState {
     isDragging: Boolean,
-    x: Number,
-    y: Number
+    x: number,
+    y: number
 }
 
 class Window extends React.Component<WindowProps, WindowState> {
     state = {
         isDragging: false,
-        x: 0,
-        y: 0
+        x: window.screen.width / 2 - 250, // Bad, should be calculated runtime
+        y: window.screen.height / 2 - 180
     }
 
     componentWillUnmount() {
@@ -29,7 +30,6 @@ class Window extends React.Component<WindowProps, WindowState> {
      * @param event - synthetic event
      */
     handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
-        console.log('down', event);
         window.addEventListener('mousemove', this.handleMouseMove);
         window.addEventListener('mouseup', this.handleMouseUp);
 
@@ -47,12 +47,10 @@ class Window extends React.Component<WindowProps, WindowState> {
      * @param event - synthetic event
      */
     handleMouseMove = (event: MouseEvent) => {
-        console.log('move', event);
-
-        this.setState({
-            x: event.clientX,
-            y: event.clientY
-        });
+        this.setState(prevState => ({
+            x: prevState.x + event.movementX,
+            y: prevState.y + event.movementY
+        }));
 
         event.stopPropagation();
         event.preventDefault();
@@ -77,8 +75,17 @@ class Window extends React.Component<WindowProps, WindowState> {
 
     render() {
         return (
-            <div style={{left: `${this.state.x}px`, top: `${this.state.y}px`}} className="window">
-                <div onMouseDown={this.handleMouseDown} className="window__header" />
+            <div style={{
+                left: `${this.state.x}px`,
+                top: `${this.state.y}px`,
+                display: this.props.isOpened ? 'block' : 'none'
+            }} 
+            className={`window ${this.state.isDragging ? 'window_is-dragging' : ''}`}>
+                <div onMouseDown={this.handleMouseDown} className="window__header">
+                    <div className={`window__icon window__icon_${this.props.windowName}`} />
+                    <div className="window__name">{this.props.windowName}</div>
+                    <div className="window__button window__button_close" />
+                </div>
                 <div className="window__content"></div>
             </div>
         );

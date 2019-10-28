@@ -8,12 +8,39 @@
     position: absolute;
     left: 0;
     top: 0;
+    z-index: 0;
 
     .window__header {
         $header-color: #E1E1E1;
         background-color: $header-color;
-        border-radius: 4px 4px 0 0;
+        border-radius: 3px 3px 0 0;
+        border: 1px solid $header-color;
         height: 32px;
         width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
     }
+
+    .window__icon {
+        height: 13px;
+        margin-top: 2px;
+        margin-left: 11px;
+    }
+
+    .window__icon_messanger {
+        background: url(../../assets/icons/messanger-icon_active.svg) no-repeat center;
+        width: 13px;
+    }
+
+    .window__name {
+        font-size: 13px;
+        cursor: default;
+        margin-bottom: 3px;
+    }
+}
+
+.window_is-dragging {
+    border: 1px solid #4494DD;
 }

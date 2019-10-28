@@ -19,7 +19,7 @@ class Workplace extends React.Component<WorkplaceProps, WorkplaceState> {
         return (
             <div className="workplace">
                 <Taskbar />
-                <Window />
+                <Window windowName="messanger" isOpened={true}/>
                 <Startbar />
             </div>
         );

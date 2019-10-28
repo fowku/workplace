@@ -34,11 +34,11 @@ $inactive-shadow_hover: rgba(#000000, 0.2);
     }
     
     .tab__close_active {
-        background: url(./close_active.svg) no-repeat 0px 0px;
+        background: url(../../assets/icons/close_active.svg) no-repeat 0px 0px;
     }
     
     .tab__close_inactive {
-        background: url(./close_inactive.svg) no-repeat 0px 0px;
+        background: url(../../assets/icons/close_inactive.svg) no-repeat 0px 0px;
     }
 }
 
@@ -50,7 +50,7 @@ $inactive-shadow_hover: rgba(#000000, 0.2);
 
 .tab_inactive {
     color: $lable-color_inactive;
-    background: url(./messanger-icon_inactive.svg) no-repeat 12px 8px;
+    background: url(../../assets/icons/messanger-icon_inactive.svg) no-repeat 12px 8px;
     box-shadow: 0 0 0 1px $inactive,
                 0 0 5px $inactive-shadow;
 }
@@ -62,7 +62,7 @@ $inactive-shadow_hover: rgba(#000000, 0.2);
 
 .tab_active {
     color: $lable-color_active;
-    background: url(./messanger-icon_active.svg) no-repeat 12px 8px;
+    background: url(../../assets/icons/messanger-icon_active.svg) no-repeat 12px 8px;
     box-shadow: 0 0 0 1px $active,
                 0 0 5px $active-shadow;
 }
