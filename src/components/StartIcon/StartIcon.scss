@@ -1,0 +1,51 @@
+.start-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out;
+}
+
+.start-icon:hover {
+    transform: scale(1.1);
+}
+
+.start-icon:not(:last-child) {
+    margin-right: 30px;
+}
+
+.start-icon_bin {
+    background: url(../../assets/icons/bin-icon.svg) no-repeat center;
+    width: 30px;
+}
+
+.start-icon_browser {
+    background: url(../../assets/icons/browser-icon.svg) no-repeat center;
+    width: 38px;
+}
+
+.start-icon_github {
+    background: url(../../assets/icons/github-icon.svg) no-repeat center;
+    width: 38px;
+}
+
+.start-icon_messanger {
+    background: url(../../assets/icons/messanger-icon.svg) no-repeat center 10px;
+    width: 38px;
+}
+
+.start-icon_notes {
+    background: url(../../assets/icons/notes-icon.svg) no-repeat center;
+    width: 30px;
+}
+
+.start-icon_player {
+    background: url(../../assets/icons/player-icon.svg) no-repeat center;
+    width: 36px;
+}
+
+.start-icon_terminal {
+    background: url(../../assets/icons/terminal-icon.svg) no-repeat center;
+    width: 38px;
+}

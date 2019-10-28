@@ -1,0 +1,79 @@
+$lable-color_active: rgba(#000000, 0.8);
+$lable-color_inactive: rgba(#000000, 0.59);
+
+$active: #4494DD;
+$active-shadow: rgba(#52A3EE, 0.6);
+$active-shadow_hover: rgba(#52A3EE, 0.7);
+
+$inactive: #E2E2E2;
+$inactive-shadow: rgba(#000000, 0.13);
+$inactive-shadow_hover: rgba(#000000, 0.2);
+
+.tab {
+    height: 26px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 500;
+    padding-bottom: 2px;
+    padding-left: 33px;
+    padding-right: 13px;
+    transition: box-shadow 0.2s ease-in-out, width 0.2s ease-in-out;
+    cursor: pointer;
+    margin-right: 12px;
+
+    .tab__close {
+        width: 0;
+        opacity: 0;
+        height: 8px;
+        margin-top: 2px;
+        transition: width 0.2s ease-in-out,
+                    margin-left 0.2s ease-in-out,
+                    opacity 0.2s ease-in-out;
+    }
+    
+    .tab__close_active {
+        background: url(../../assets/icons/close_active.svg) no-repeat 0px 0px;
+    }
+    
+    .tab__close_inactive {
+        background: url(../../assets/icons/close_inactive.svg) no-repeat 0px 0px;
+    }
+}
+
+.tab:hover .tab__close {
+    width: 8px;
+    margin-left: 13px;
+    opacity: 1;
+}
+
+.tab_inactive {
+    color: $lable-color_inactive;
+    background: url(../../assets/icons/messanger-icon_inactive.svg) no-repeat 12px 8px;
+    box-shadow: 0 0 0 1px $inactive,
+                0 0 5px $inactive-shadow;
+}
+
+.tab_inactive:hover {
+    box-shadow: 0 0 0 1px $inactive,
+                0 0 10px $inactive-shadow_hover;
+}
+
+.tab_active {
+    color: $lable-color_active;
+    background: url(../../assets/icons/messanger-icon_active.svg) no-repeat 12px 8px;
+    box-shadow: 0 0 0 1px $active,
+                0 0 5px $active-shadow;
+}
+
+.tab_active:hover {
+    box-shadow: 0 0 0 1px $active,
+                0 0 10px $active-shadow_hover;
+}
+
+.tab:last-child::after {
+    width: 20px;
+    height: 10px;
+    background-color: red;
+}
