@@ -1,24 +1,19 @@
 import * as React from 'react';
+import { observer } from 'mobx-react';
+import startbarStore from '../../stores/startbarStore';
 import './StartIcon.scss';
 
 export interface StartIconProps {
     appName: string
 }
  
-export interface StartIconState {
-    
-}
- 
-class StartIcon extends React.Component<StartIconProps, StartIconState> {
+@observer
+class StartIcon extends React.Component<StartIconProps, {}> {
     state = {};
-
-    openApp = () => {
-        
-    }
 
     render() { 
         return (
-            <div onClick={this.openApp} className={`start-icon start-icon_${this.props.appName}`} />
+            <div onClick={() => startbarStore.openApplication(this.props.appName)} className={`start-icon start-icon_${this.props.appName}`} />
         );
     }
 }
