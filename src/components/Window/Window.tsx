@@ -1,9 +1,12 @@
 import * as React from 'react';
+import { observer } from 'mobx-react';
 import './Window.scss';
 
+import startbarStore from '../../stores/startbarStore';
+
 export interface WindowProps {
-    isOpened: Boolean,
-    windowName: String
+    isOpened: boolean,
+    windowName: string
 }
 
 export interface WindowState {
@@ -12,6 +15,7 @@ export interface WindowState {
     y: number
 }
 
+@observer
 class Window extends React.Component<WindowProps, WindowState> {
     state = {
         isDragging: false,
@@ -26,7 +30,6 @@ class Window extends React.Component<WindowProps, WindowState> {
 
     /**
      * Handles mousedown event
-     * 
      * @param event - synthetic event
      */
     handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -43,7 +46,6 @@ class Window extends React.Component<WindowProps, WindowState> {
 
     /**
      * Handles mousemove event
-     * 
      * @param event - synthetic event
      */
     handleMouseMove = (event: MouseEvent) => {
@@ -58,7 +60,6 @@ class Window extends React.Component<WindowProps, WindowState> {
 
     /**
      * Handles mouseup event
-     * 
      * @param event - synthetic event
      */
     handleMouseUp = (event: MouseEvent) => {
@@ -84,7 +85,7 @@ class Window extends React.Component<WindowProps, WindowState> {
                 <div onMouseDown={this.handleMouseDown} className="window__header">
                     <div className={`window__icon window__icon_${this.props.windowName}`} />
                     <div className="window__name">{this.props.windowName}</div>
-                    <div className="window__button window__button_close" />
+                    <button className="window__button window__button_close" onClick={() => startbarStore.toggleApplication(this.props.windowName)} />
                 </div>
                 <div className="window__content"></div>
             </div>

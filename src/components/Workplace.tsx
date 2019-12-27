@@ -6,7 +6,7 @@ import Taskbar from './Taskbar/Taskbar';
 import Window from './Window/Window';
 import Startbar from './Startbar/Startbar';
 
-import StartbarStore from '../stores/startbarStore';
+import startbarStore from '../stores/startbarStore';
 
 @observer
 class Workplace extends React.Component<{}, {}> {
@@ -14,12 +14,12 @@ class Workplace extends React.Component<{}, {}> {
         return (
             <div className="workplace">
                 <Taskbar />
-                <Window windowName="player" isOpened={StartbarStore.playerIsOpen} />
-                <Window windowName="browser" isOpened={StartbarStore.browserIsOpen} />
-                <Window windowName="messanger" isOpened={StartbarStore.messangerIsOpen} />
-                <Window windowName="notes" isOpened={StartbarStore.notesIsOpen} />
-                <Window windowName="terminal" isOpened={StartbarStore.terminalIsOpen} />
-                <Window windowName="bin" isOpened={StartbarStore.binIsOpen} />
+                <Window windowName="player" isOpened={startbarStore.playerIsOpen} />
+                <Window windowName="browser" isOpened={startbarStore.browserIsOpen} />
+                <Window windowName="messanger" isOpened={startbarStore.messangerIsOpen} />
+                <Window windowName="notes" isOpened={startbarStore.notesIsOpen} />
+                <Window windowName="terminal" isOpened={startbarStore.terminalIsOpen} />
+                <Window windowName="bin" isOpened={startbarStore.binIsOpen} />
                 <Startbar />
             </div>
         );

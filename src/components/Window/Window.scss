@@ -39,6 +39,13 @@
         cursor: default;
         margin-bottom: 3px;
     }
+
+    .window__button {
+        height: 15px;
+        width: 15px;
+        background-color: red;
+        cursor: pointer;
+    }
 }
 
 .window_is-dragging {

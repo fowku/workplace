@@ -9,30 +9,30 @@ class StartbarStore {
   @observable binIsOpen: boolean = false;
 
   @action.bound
-  openApplication(appName: string) {
+    toggleApplication(appName: string) {
     switch (appName) {
       case 'player':
-        this.playerIsOpen = true;
+        this.playerIsOpen = !this.playerIsOpen;
         break;
 
       case 'browser':
-        this.browserIsOpen = true;
+        this.browserIsOpen = !this.browserIsOpen;
         break;
 
       case 'messanger':
-        this.messangerIsOpen = true;
+        this.messangerIsOpen = !this.messangerIsOpen;
         break;
 
       case 'notes':
-        this.notesIsOpen = true;
+        this.notesIsOpen = !this.notesIsOpen;
         break;
 
       case 'terminal':
-        this.terminalIsOpen = true;
+        this.terminalIsOpen = !this.terminalIsOpen;
         break;
 
       case 'bin':
-        this.binIsOpen = true;
+        this.binIsOpen = !this.binIsOpen;
         break;
 
       default:
