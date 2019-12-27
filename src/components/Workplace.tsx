@@ -1,29 +1,29 @@
 import * as React from 'react';
 import './Workplace.scss';
+import { observer } from 'mobx-react';
 
 import Taskbar from './Taskbar/Taskbar';
 import Window from './Window/Window';
 import Startbar from './Startbar/Startbar';
 
-export interface WorkplaceProps {
-    
-}
- 
-export interface WorkplaceState {
-    
-}
- 
-class Workplace extends React.Component<WorkplaceProps, WorkplaceState> {
-    state = {}
-    render() { 
+import startbarStore from '../stores/startbarStore';
+
+@observer
+class Workplace extends React.Component<{}, {}> {
+    render() {
         return (
             <div className="workplace">
                 <Taskbar />
-                <Window windowName="messanger" isOpened={true}/>
+                <Window windowName="player" isOpened={startbarStore.playerIsOpen} />
+                <Window windowName="browser" isOpened={startbarStore.browserIsOpen} />
+                <Window windowName="messanger" isOpened={startbarStore.messangerIsOpen} />
+                <Window windowName="notes" isOpened={startbarStore.notesIsOpen} />
+                <Window windowName="terminal" isOpened={startbarStore.terminalIsOpen} />
+                <Window windowName="bin" isOpened={startbarStore.binIsOpen} />
                 <Startbar />
             </div>
         );
     }
 }
- 
+
 export default Workplace;
