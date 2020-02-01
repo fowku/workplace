@@ -1,15 +1,15 @@
 import { observable, action } from 'mobx';
 
 class StartbarStore {
-  @observable playerIsOpen: boolean = false;
-  @observable browserIsOpen: boolean = false;
-  @observable messangerIsOpen: boolean = false;
-  @observable notesIsOpen: boolean = false;
-  @observable terminalIsOpen: boolean = false;
-  @observable binIsOpen: boolean = false;
+  @observable playerIsOpen = false;
+  @observable browserIsOpen = false;
+  @observable messangerIsOpen = false;
+  @observable notesIsOpen = false;
+  @observable terminalIsOpen = false;
+  @observable binIsOpen = false;
 
   @action.bound
-    toggleApplication(appName: string) {
+  toggleApplication(appName: string): void {
     switch (appName) {
       case 'player':
         this.playerIsOpen = !this.playerIsOpen;

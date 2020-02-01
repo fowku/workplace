@@ -10,20 +10,20 @@ import startbarStore from '../stores/startbarStore';
 
 @observer
 class Workplace extends React.Component<{}, {}> {
-    render() {
-        return (
-            <div className="workplace">
-                <Taskbar />
-                <Window windowName="player" isOpened={startbarStore.playerIsOpen} />
-                <Window windowName="browser" isOpened={startbarStore.browserIsOpen} />
-                <Window windowName="messanger" isOpened={startbarStore.messangerIsOpen} />
-                <Window windowName="notes" isOpened={startbarStore.notesIsOpen} />
-                <Window windowName="terminal" isOpened={startbarStore.terminalIsOpen} />
-                <Window windowName="bin" isOpened={startbarStore.binIsOpen} />
-                <Startbar />
-            </div>
-        );
-    }
+  render(): JSX.Element {
+    return (
+      <div className="workplace">
+        <Taskbar />
+        <Window windowName="player" isOpened={startbarStore.playerIsOpen} />
+        <Window windowName="browser" isOpened={startbarStore.browserIsOpen} />
+        <Window windowName="messanger" isOpened={startbarStore.messangerIsOpen} />
+        <Window windowName="notes" isOpened={startbarStore.notesIsOpen} />
+        <Window windowName="terminal" isOpened={startbarStore.terminalIsOpen} />
+        <Window windowName="bin" isOpened={startbarStore.binIsOpen} />
+        <Startbar />
+      </div>
+    );
+  }
 }
 
 export default Workplace;
