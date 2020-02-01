@@ -1,41 +1,39 @@
 import * as React from 'react';
 import './Clock.scss';
- 
+
 export interface ClockState {
-    time: String | null
+  time: string | null;
 }
- 
+
 class Clock extends React.Component<{}, ClockState> {
-    state = {
-        time: this.getTime()
-    }
+  state = {
+    time: this.getTime(),
+  };
 
-    private getTime() {
-        const now = new Date();
-        let hours: Number | String = now.getHours();
-        let minutes: Number | String = now.getMinutes();
+  private getTime(): string {
+    const now = new Date();
+    let hours: number | string = now.getHours();
+    let minutes: number | string = now.getMinutes();
 
-        hours = hours < 10 ? `0${hours}` : hours;
-        minutes = minutes < 10 ? `0${minutes}` : minutes;
-        
-        return `${hours}:${minutes}`;
-    }
+    hours = hours < 10 ? `0${hours}` : hours;
+    minutes = minutes < 10 ? `0${minutes}` : minutes;
 
-    private tickClock() {
-        this.setState({
-            time: this.getTime()
-        });
-    }
-    
-    componentDidMount() {
-        setInterval(() => this.tickClock(), 1000);
-    }
+    return `${hours}:${minutes}`;
+  }
 
-    public render() { 
-        return (
-            <div className="clock">{this.state.time}</div>
-        );
-    }
+  private tickClock(): void {
+    this.setState({
+      time: this.getTime(),
+    });
+  }
+
+  componentDidMount(): void {
+    setInterval(() => this.tickClock(), 1000);
+  }
+
+  public render(): JSX.Element {
+    return <div className="clock">{this.state.time}</div>;
+  }
 }
- 
+
 export default Clock;
