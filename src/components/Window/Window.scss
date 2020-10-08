@@ -1,5 +1,6 @@
+@import '../../styles/colors.scss';
+
 .window {
-  $window-color: white;
   width: 500px;
   height: 360px;
   background-color: $window-color;
@@ -10,8 +11,7 @@
   top: 0;
   z-index: 0;
 
-  .window__header {
-    $header-color: #e1e1e1;
+  &__header {
     background-color: $header-color;
     border-radius: 3px 3px 0 0;
     border: 1px solid $header-color;
@@ -23,29 +23,54 @@
     align-items: center;
   }
 
-  .window__icon {
+  &__icon {
     height: 13px;
     margin-top: 2px;
     margin-left: 11px;
   }
 
-  .window__icon_messanger {
-    background: url(../../assets/icons/messanger-icon_active.svg) no-repeat
-      center;
+  &__icon_messanger {
+    background: url(../../assets/icons/messanger-icon_active.svg) no-repeat center;
     width: 13px;
   }
 
-  .window__name {
+  &__name {
     font-size: 13px;
     cursor: default;
     margin-bottom: 3px;
+    margin-left: 53px;
   }
 
-  .window__button {
-    height: 15px;
-    width: 15px;
-    background-color: red;
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-right: 7px;
+  }
+
+  &__button {
+    border-radius: 8px;
+    height: 13px;
+    width: 13px;
+    margin-left: 6px;
+    background-color: $window-button-color;
     cursor: pointer;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &_close:hover {
+      background-color: $window-button-color-close;
+    }
+
+    &_minimize:hover {
+      background-color: $window-button-color-minimize;
+    }
+
+    &_maximize:hover {
+      background-color: $window-button-color-maximize;
+    }
   }
 }
 
