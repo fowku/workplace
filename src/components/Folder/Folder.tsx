@@ -1,13 +1,13 @@
 // libs
 import * as React from 'react';
 
-interface FolderProps {}
+interface FolderProps {
+  name: string;
+}
 
-interface FolderState {}
-
-class Folder extends React.Component<FolderProps, FolderState> {
+class Folder extends React.Component<FolderProps, {}> {
   // state = { :  }
-  render() {
+  render(): JSX.Element {
     return <div></div>;
   }
 }

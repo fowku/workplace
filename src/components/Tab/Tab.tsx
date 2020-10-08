@@ -18,7 +18,10 @@ export interface TabProps {
 class Tab extends React.Component<TabProps, {}> {
   render(): JSX.Element {
     return (
-      <div className={`tab ${this.props.active ? 'tab_active' : 'tab_inactive'}`}>
+      <div
+        onClick={(): void => appsStore.activateApplication(this.props.name)}
+        className={`tab ${this.props.active ? 'tab_active' : 'tab_inactive'}`}
+      >
         {this.props.name}
         <div
           onClick={(): void => appsStore.closeApplication(this.props.name)}

@@ -12,7 +12,8 @@ import appsStore from '../../stores/appsStore';
 import { WindowsEnum } from './enum/windows.enum';
 
 interface WindowProps {
-  isOpened: boolean | undefined;
+  isOpened: boolean;
+  isActive: boolean;
   windowName: WindowsEnum;
   width?: number;
   height?: number;
@@ -21,12 +22,19 @@ interface WindowProps {
 interface WindowState {
   isDragging: boolean;
   zIndex: number;
+  fullscreen: boolean;
+  fullscreenIsToggling: boolean;
+  isMinimizing: boolean;
   x: number;
   y: number;
 }
 
 const DEFAULT_WIDTH = 500;
 const DEFAULT_HEIGHT = 360;
+
+// TODO: pass a taksbar refs for height computing
+const TASKBAR_HEIGHT = 52;
+const STARTBAR_HEIGHT = 77;
 
 @observer
 class Window extends React.Component<WindowProps, WindowState> {
@@ -35,6 +43,9 @@ class Window extends React.Component<WindowProps, WindowState> {
     x: window.innerWidth / 2 - (this.props.width ? this.props.width : DEFAULT_WIDTH) / 2,
     y: window.innerHeight / 2 - (this.props.height ? this.props.height : DEFAULT_HEIGHT) / 2,
     zIndex: appsStore.highestZOrder,
+    fullscreen: false,
+    fullscreenIsToggling: false,
+    isMinimizing: false,
   };
 
   componentWillUnmount(): void {
@@ -45,6 +56,14 @@ class Window extends React.Component<WindowProps, WindowState> {
   componentDidUpdate(prevProps: WindowProps): void {
     if (!prevProps.isOpened && this.props.isOpened) {
       this.bringToFront();
+    }
+
+    if (!prevProps.isActive && this.props.isActive) {
+      this.setState({
+        isMinimizing: true,
+      });
+
+      setTimeout(() => this.setState({ isMinimizing: false }), 300);
     }
   }
 
@@ -91,8 +110,7 @@ class Window extends React.Component<WindowProps, WindowState> {
    */
   private handleMouseMove = (event: MouseEvent): void => {
     this.setState(prevState => {
-      // TODO: pass a taksbar and startbar refs for height computing
-      const topEdge = 52;
+      const topEdge = TASKBAR_HEIGHT;
       const leftEdge = 0;
       const rightEdge = window.innerWidth - (this.props.width ? this.props.width : DEFAULT_WIDTH);
       const bottomEdge = window.innerHeight - (this.props.height ? this.props.height : DEFAULT_HEIGHT);
@@ -142,16 +160,68 @@ class Window extends React.Component<WindowProps, WindowState> {
     event.preventDefault();
   };
 
+  /**
+   * Turn on/off window fulscreen
+   */
+  private toggleFullscreen = (): void => {
+    this.setState(prevState => ({
+      fullscreen: !prevState.fullscreen,
+      fullscreenIsToggling: true,
+    }));
+
+    setTimeout(() => this.setState({ fullscreenIsToggling: false }), 300);
+  };
+
+  /**
+   * Minimize window
+   * @param appName application name
+   */
+  private minimizeWindow = (appName: WindowsEnum): void => {
+    this.setState({
+      isMinimizing: true,
+    });
+    appsStore.disableApplication(appName);
+
+    setTimeout(() => {
+      this.setState({ isMinimizing: false });
+    }, 300);
+  };
+
   render(): JSX.Element {
+    let width, height;
+    let left, top;
+
+    if (this.state.fullscreen) {
+      width = window.innerWidth;
+      height = window.innerHeight - TASKBAR_HEIGHT - STARTBAR_HEIGHT;
+    } else {
+      width = this.props.width ? this.props.width : DEFAULT_WIDTH;
+      height = this.props.height ? this.props.height : DEFAULT_HEIGHT;
+    }
+
+    if (!this.props.isActive) {
+      left = this.state.x;
+      top = -2000;
+    } else {
+      if (this.state.fullscreen) {
+        left = 0;
+        top = TASKBAR_HEIGHT;
+      } else {
+        left = this.state.x;
+        top = this.state.y;
+      }
+    }
+
     return (
       <div
         style={{
-          left: `${this.state.x}px`,
-          top: `${this.state.y}px`,
+          left: `${left}px`,
+          top: `${top}px`,
           display: this.props.isOpened ? 'block' : 'none',
-          width: `${this.props.width ? this.props.width : null}px`,
-          height: `${this.props.height ? this.props.height : null}px`,
+          width: `${width}px`,
+          height: `${height}px`,
           zIndex: this.state.zIndex,
+          transition: this.state.fullscreenIsToggling || this.state.isMinimizing ? 'all 0.3s ease-in-out' : undefined,
         }}
         onClick={this.handleWindowClick}
         className={`window ${this.state.isDragging ? 'window_is-dragging' : ''}`}
@@ -161,13 +231,10 @@ class Window extends React.Component<WindowProps, WindowState> {
           <div className={`window__icon window__icon_${this.props.windowName}`} />
           <div className="window__name">{this.props.windowName}</div>
           <div className="window__buttons">
-            <button
-              className="window__button window__button_maximize"
-              onClick={(): void => appsStore.closeApplication(this.props.windowName)}
-            />
+            <button className="window__button window__button_maximize" onClick={this.toggleFullscreen} />
             <button
               className="window__button window__button_minimize"
-              onClick={(): void => appsStore.closeApplication(this.props.windowName)}
+              onClick={(): void => this.minimizeWindow(this.props.windowName)}
             />
             <button
               className="window__button window__button_close"
@@ -175,7 +242,7 @@ class Window extends React.Component<WindowProps, WindowState> {
             />
           </div>
         </div>
-        <div className="window__content"></div>
+        <div className="window__content">{this.props.children}</div>
       </div>
     );
   }

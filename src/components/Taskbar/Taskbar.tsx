@@ -20,20 +20,20 @@ import { AppStatus } from '../../stores/appsStore';
 // TODO: fix styles (horizontal scroll)
 class Taskbar extends React.Component<{}, {}> {
   render(): JSX.Element {
-    const tabs: Array<{ key: WindowsEnum; value: AppStatus }> = [];
+    const apps: Array<{ name: WindowsEnum; status: AppStatus }> = [];
 
     appsStore.appsStatuses.forEach((value: AppStatus, key: WindowsEnum) => {
-      tabs.push({
-        key,
-        value,
+      apps.push({
+        name: key,
+        status: value,
       });
     });
 
     return (
       <div className="taskbar">
         <div className="taskbar__tabs">
-          {tabs.map(tab =>
-            tab.value.isOpen ? <Tab name={tab.key} active={tab.value.isActive} key={tab.key} /> : null,
+          {apps.map(app =>
+            app.status.isOpen ? <Tab name={app.name} active={app.status.isActive} key={app.name} /> : null,
           )}
         </div>
         <div className="taskbar__end" />
