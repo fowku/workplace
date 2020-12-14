@@ -29,19 +29,19 @@ interface WindowState {
   y: number;
 }
 
-const DEFAULT_WIDTH = 500;
-const DEFAULT_HEIGHT = 360;
-
 // TODO: pass a taksbar refs for height computing
 const TASKBAR_HEIGHT = 52;
 const STARTBAR_HEIGHT = 77;
 
 @observer
 class Window extends React.Component<WindowProps, WindowState> {
+  public readonly DEFAULT_WIDTH = 500;
+  public readonly DEFAULT_HEIGHT = 360;
+
   state = {
     isDragging: false,
-    x: window.innerWidth / 2 - (this.props.width ? this.props.width : DEFAULT_WIDTH) / 2,
-    y: window.innerHeight / 2 - (this.props.height ? this.props.height : DEFAULT_HEIGHT) / 2,
+    x: window.innerWidth / 2 - (this.props.width ? this.props.width : this.DEFAULT_WIDTH) / 2,
+    y: window.innerHeight / 2 - (this.props.height ? this.props.height : this.DEFAULT_HEIGHT) / 2,
     zIndex: appsStore.highestZOrder,
     fullscreen: false,
     fullscreenIsToggling: false,
@@ -112,8 +112,8 @@ class Window extends React.Component<WindowProps, WindowState> {
     this.setState(prevState => {
       const topEdge = TASKBAR_HEIGHT;
       const leftEdge = 0;
-      const rightEdge = window.innerWidth - (this.props.width ? this.props.width : DEFAULT_WIDTH);
-      const bottomEdge = window.innerHeight - (this.props.height ? this.props.height : DEFAULT_HEIGHT);
+      const rightEdge = window.innerWidth - (this.props.width ? this.props.width : this.DEFAULT_WIDTH);
+      const bottomEdge = window.innerHeight - (this.props.height ? this.props.height : this.DEFAULT_HEIGHT);
 
       let x = prevState.x + event.movementX;
       let y = prevState.y + event.movementY;
@@ -195,8 +195,8 @@ class Window extends React.Component<WindowProps, WindowState> {
       width = window.innerWidth;
       height = window.innerHeight - TASKBAR_HEIGHT - STARTBAR_HEIGHT;
     } else {
-      width = this.props.width ? this.props.width : DEFAULT_WIDTH;
-      height = this.props.height ? this.props.height : DEFAULT_HEIGHT;
+      width = this.props.width ? this.props.width : this.DEFAULT_WIDTH;
+      height = this.props.height ? this.props.height : this.DEFAULT_HEIGHT;
     }
 
     if (!this.props.isActive) {
