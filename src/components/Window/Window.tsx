@@ -228,7 +228,7 @@ class Window extends React.Component<WindowProps, WindowState> {
         ref={this.windowRef}
       >
         <div onMouseDown={this.handleMouseDown} className="window__header">
-          <div className={`window__icon window__icon_${this.props.windowName}`} />
+          {/* <div className={`window__icon window__icon_${this.props.windowName}`} /> */}
           <div className="window__name">{this.props.windowName}</div>
           <div className="window__buttons">
             <button className="window__button window__button_maximize" onClick={this.toggleFullscreen} />

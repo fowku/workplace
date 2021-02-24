@@ -16,7 +16,7 @@ class AppsStore {
     [WindowsEnum.BROWSER, { isOpen: false, isActive: false }],
     [WindowsEnum.MESSANGER, { isOpen: false, isActive: false }],
     [WindowsEnum.NOTES, { isOpen: false, isActive: false }],
-    [WindowsEnum.TERMINAL, { isOpen: true, isActive: true }],
+    [WindowsEnum.TERMINAL, { isOpen: false, isActive: false }],
     [WindowsEnum.BIN, { isOpen: false, isActive: false }],
   ]);
 

@@ -13,6 +13,7 @@
   left: 0;
   top: 0;
   z-index: 0;
+  overflow: hidden;
 
   &_is-dragging {
     border: 1px solid #4494dd;
@@ -20,7 +21,7 @@
 
   &__header {
     background-color: $header-color;
-    border-radius: 3px 3px 0 0;
+    border-radius: $border-radius - 1px $border-radius - 1px 0 0;
     border: 1px solid $header-color;
     height: $header-height;
     width: 100%;
@@ -40,11 +41,11 @@
     height: 13px;
     margin-top: 2px;
     margin-left: 11px;
-  }
 
-  &__icon_messanger {
-    background: url(../../assets/icons/messanger-icon_active.svg) no-repeat center;
-    width: 13px;
+    &_messanger {
+      background: url(../../assets/icons/messanger-icon_active.svg) no-repeat center;
+      width: 13px;
+    }
   }
 
   &__name {
@@ -73,15 +74,15 @@
       margin-left: 0;
     }
 
-    &_close:hover {
+    &_close {
       background-color: $window-button-color-close;
     }
 
-    &_minimize:hover {
+    &_minimize {
       background-color: $window-button-color-minimize;
     }
 
-    &_maximize:hover {
+    &_maximize {
       background-color: $window-button-color-maximize;
     }
   }
